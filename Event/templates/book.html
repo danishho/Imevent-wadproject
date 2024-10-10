@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/book.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-book">
+        <!-- Event Summary Section -->
+        <div class="event-summary">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            <h2>{{ event.title }}</h2>
+            <p><strong>Date:</strong> {{ event.start_date }} - {{ event.end_date }}</p>
+        </div>
+
+        <!-- Booking Form -->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+{% endblock %}

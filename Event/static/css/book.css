@@ -1,0 +1,44 @@
+.container-book {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.event-summary {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.event-summary img {
+    width: 100%; /* Ensure image takes full width */
+    max-width: 400px; /* Limit the maximum width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}
+.event-summary h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+}
+form {
+    margin-top: 30px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #ff5a5f;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
