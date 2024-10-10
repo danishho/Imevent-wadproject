@@ -37,3 +37,14 @@ class EventForm(forms.ModelForm):
             'start_date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}),
         }
+
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['name', 'student_id', 'phone_number']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'student_id': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+        }

@@ -36,7 +36,7 @@ class Event(models.Model):
 class Booking(models.Model):
     name = models.CharField(max_length=200)
     student_id = models.CharField(max_length=200)
-    contact_number = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=200)
     booking_date = models.DateField(auto_now_add=True)
     event = models.ForeignKey(Event, related_name='bookings', on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, related_name='bookings', on_delete=models.CASCADE)

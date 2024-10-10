@@ -20,11 +20,11 @@
                 <p class="event-description">{{ event.description }}</p>
 
                 <!-- Tickets Available (for display) -->
-                <p class="event-meta">Tickets Available: {{ event.max_tickets }}</p>
+                <p class="event-meta"> Availibilty: {{ event.booked_count }}/{{ event.max_tickets }}</p>
 
                 <!-- Book Now Button -->
                 <div class="book-btn-container">
-                    <a href="{% url 'Book' event.id %}" class="book-btn">Book Now</a>
+                    <a href="{% url 'book' event.id %}" class="book-btn">Book Now</a>
                 </div>
             </div>
         </div>

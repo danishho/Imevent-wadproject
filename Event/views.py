@@ -3,13 +3,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CustomUserCreationForm, LoginForm, EventForm
+from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm
 from .models import CustomUser, Event, Booking
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 
 def index(request):
     events = Event.objects.filter(start_date__gte=timezone.now()).order_by('start_date')[:4]
+    for event in events:
+        event.booked_count = Booking.objects.filter(event=event).count()
     return render(request, 'homepage.html', {'events': events})
 
 
@@ -83,9 +85,30 @@ def createEvent(request):
 
 def event(request):
     events = Event.objects.all()
+    for event in events:
+        event.booked_count = Booking.objects.filter(event=event).count()
     return render(request, 'event.html', {'events': events})
 
 
 def eventDetails(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
+    event.booked_count = Booking.objects.filter(event=event).count()
     return render(request, 'eventDetails.html', {'event': event})
+
+
+def book(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    if request.method == 'GET':
+        user = CustomUser.objects.get(pk=request.user.id)
+        form = BookingForm(initial={'phone_number': user.phone_number})
+        context = {'event': event, 'user': user, 'form': form}
+    if request.method == 'POST':
+        if request.method == 'POST':
+            form = BookingForm(request.POST)
+            if form.is_valid():
+                booking = form.save(commit=False)
+                booking.event = event
+                booking.user = request.user  # assuming the user is logged in
+                booking.save()
+                return redirect('index')  # Redirect to a success page
+    return render(request, 'book.html', context)
