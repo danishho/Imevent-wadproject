@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+   <h2>Sign Up</h2>
+
+	{% for field in form %}
+	<p>
+		{% if field.errors %}
+		<ul class="errorlist">
+			{% for error in field.errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+        {% if "Password-based authentication" not in field.label_tag %}
+            <div>
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endif %}
+	</p>
+	{% endfor %}
+	<input type="submit" value="Register" />
+
+
+</form>
+</body>
+</html>

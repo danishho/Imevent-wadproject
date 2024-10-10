@@ -1,0 +1,66 @@
+/* CSS for Event Details Page */
+
+.container-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+.event-card {
+    background: white;
+    width: 80%;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+/* Left: Event Image */
+.event-image {
+    flex: 1;
+    background-color: #e9f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.event-image img {
+    width: 80%;
+    border-radius: 15px;
+}
+/* Right: Event Details */
+.event-details {
+    flex: 2;
+    padding: 40px;
+}
+.event-title {
+    font-size: 32px;
+    color: #444;
+    margin-bottom: 10px;
+}
+.event-meta {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.event-description {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+/* Book Button */
+.book-btn {
+    background-color: #ff5a5f;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 16px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.book-btn:hover {
+    background-color: #e04848;
+}
