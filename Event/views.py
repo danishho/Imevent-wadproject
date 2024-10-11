@@ -2,11 +2,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm
+from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm, CustomUserChangeForm
 from .models import CustomUser, Event, Booking
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import update_session_auth_hash
+
 
 def index(request):
     events = Event.objects.filter(start_date__gte=timezone.now()).order_by('start_date')[:4]
@@ -103,14 +106,13 @@ def book(request, event_id):
         form = BookingForm(initial={'phone_number': user.phone_number})
         context = {'event': event, 'user': user, 'form': form}
     if request.method == 'POST':
-        if request.method == 'POST':
-            form = BookingForm(request.POST)
-            if form.is_valid():
-                booking = form.save(commit=False)
-                booking.event = event
-                booking.user = request.user  # assuming the user is logged in
-                booking.save()
-                return redirect('index')  # Redirect to a success page
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.event = event
+            booking.user = request.user  # assuming the user is logged in
+            booking.save()
+            return redirect('index')  # Redirect to a success page
     return render(request, 'book.html', context)
 
 
@@ -122,7 +124,9 @@ def myevent(request):
 
 
 def yourbooking(request):
-    return None
+    bookings = Booking.objects.select_related('event').filter(user_id=request.user.id)
+    return render(request, 'yourbooking.html', {'bookings': bookings})
+
 
 
 def update_event(request, event_id):
@@ -133,6 +137,7 @@ def update_event(request, event_id):
                                   'location': event.location, 'start_date': event.start_date,
                                   'end_date': event.end_date, 'max_tickets': event.max_tickets})
         return render(request, 'updateEvent.html', {'form': form, })
+    # this put
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES, instance=event)
         if form.is_valid():
@@ -146,3 +151,28 @@ def delete_event(request, event_id):
     event = Event.objects.get(pk=event_id)
     event.delete()
     return redirect('myevent')
+
+
+def cancel_booking(request,booking_id):
+    booking = Booking.objects.get(pk=booking_id)
+    booking.delete()
+    return redirect('yourbooking')
+
+
+def edit_profile(request, user_id):
+    if request.method == 'GET':
+        profile = CustomUserChangeForm(instance=request.user)
+        password = PasswordChangeForm(user=request.user)
+        return render(request, 'editprofile.html', {"user": profile, "password": password})
+    elif request.method == 'POST':
+        profile = CustomUserChangeForm(request.POST, instance=request.user)
+        password = PasswordChangeForm(user=request.user, data=request.POST)
+
+        if profile.is_valid():
+            profile.save()
+            return redirect('index')
+        elif password.is_valid():
+            user = password.save()
+            update_session_auth_hash(request, user)
+            return redirect('index')
+    return render(request, 'editprofile.html')

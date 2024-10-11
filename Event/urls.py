@@ -14,4 +14,6 @@ urlpatterns = [
     path('yourbooking/', views.yourbooking, name='yourbooking'),
     path('updateEvent/<int:event_id>', views.update_event, name='update_event'),
     path('deleteEvent/<int:event_id>', views.delete_event, name='delete_event'),
+    path('cancelBooking/<int:booking_id>', views.cancel_booking, name='cancel_booking'),
+    path('editProfile/<int:user_id>', views.edit_profile, name='edit_profile'),
 ]

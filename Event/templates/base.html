@@ -10,57 +10,90 @@
     {% endblock %}
     <style>
         .nav {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 80rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.nav-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-}
+        .nav-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
 
-.logo img {
-    height: 120px;
-}
+        .logo img {
+            height: 120px;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
 
-.nav-links a {
-    margin-right: 2rem;
-    text-decoration: none;
-    color: #6a0dad;
-}
+        .nav-links a {
+            margin-right: 2rem;
+            text-decoration: none;
+            color: #6a0dad;
+        }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-}
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
 
-.nav-actions a {
-    margin-left: 1.5rem;
-    text-decoration: none;
-    color: #6a0dad;
-}
+        .nav-actions .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
+        .nav-actions .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .nav-actions .dropdown-content a {
+            color: #6a0dad;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-actions .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .nav-actions .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-actions a {
+            margin-right: 2rem; /* Increase the margin to add more space */
+            text-decoration: none;
+            color: #6a0dad;
+        }
+
+        .nav-actions a:last-child {
+            margin-right: 0; /* Ensure no extra margin for the last item */
+        }
 
     </style>
 </head>
@@ -70,7 +103,7 @@ a:hover {
             <div class="nav-content">
                 <!-- Logo Section -->
                 <div class="logo">
-                    <img src="{% static 'image/IMEVENT.svg' %}" alt="Logo" >
+                    <img src="{% static 'image/IMEVENT.svg' %}" alt="Logo">
                 </div>
 
                 <!-- Navigation Links -->
@@ -78,8 +111,8 @@ a:hover {
                     <a href="{% url 'index' %}">Home</a>
                     <a href="{% url 'event' %}">Event</a>
                     {% if request.user.user_type == 'Mpp' %}
-                    <a href="{% url 'createEvent' %}" class="add-event">Add Event</a>
-                    <a href="{% url 'myevent' %}" class="add-event">My Event</a>
+                        <a href="{% url 'createEvent' %}" class="add-event">Add Event</a>
+                        <a href="{% url 'myevent' %}" class="add-event">My Event</a>
                     {% endif %}
                     <a href="{% url 'yourbooking' %}">Your Booking</a>
                 </div>
@@ -87,10 +120,17 @@ a:hover {
                 <!-- Sign in, Register Section -->
                 <div class="nav-actions">
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'logout' %}">Logout</a>
+                        <div class="dropdown">
+                            <a href="javascript:void(0)">{{ request.user.username }}</a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'edit_profile' request.user.id %}">Edit Profile</a>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
                     {% else %}
                         <a href="{% url 'login' %}">Log In</a>
                         <a href="{% url 'register' %}">Register</a>
+
                     {% endif %}
                 </div>
             </div>

@@ -23,6 +23,9 @@ class CustomUserChangeForm(UserChangeForm):
         self.fields['user_type'].widget.attrs.update({'class': 'form-control'})
         self.fields['phone_number'].widget.attrs.update({'class': 'form-control'})
 
+        if 'password' in self.fields:
+            self.fields.pop('password')
+
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(widget=forms.EmailInput(attrs={'autofocus': True, 'class': 'form-control'}), label="Email")

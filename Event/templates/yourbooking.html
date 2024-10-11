@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_head %}4
+    <link rel="stylesheet" href="{% static 'css/yourbooking.css' %}">
+{% endblock %}
+
+{% block content %}
+    <center><h1>My booking</h1></center>
+     <div class="event-table-container">
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Student ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td><img src="{{ booking.event.image.url }}" alt="Event Image"></td>
+                        <td>{{ booking.event.title }}</td>
+                        <td>{{ booking.event.description }}</td>
+                        <td>{{ booking.event.location }}</td>
+                        <td>{{ booking.event.start_date|date:"d/m/y" }} - {{ booking.event.end_date|date:"d/m/y" }}</td>
+                        <td>{{ booking.student_id }}</td>
+                        <td>
+                            <div class="action-container">
+                                <a href="{% url 'cancel_booking' booking.id %}"><button class="action-btn delete">Cancel</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
