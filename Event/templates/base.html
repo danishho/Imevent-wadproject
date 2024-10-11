@@ -78,9 +78,10 @@ a:hover {
                     <a href="{% url 'index' %}">Home</a>
                     <a href="{% url 'event' %}">Event</a>
                     {% if request.user.user_type == 'Mpp' %}
-                    <a href="{% url 'createEvent' %}" class="save-marks">Add Event</a>
+                    <a href="{% url 'createEvent' %}" class="add-event">Add Event</a>
+                    <a href="{% url 'myevent' %}" class="add-event">My Event</a>
                     {% endif %}
-
+                    <a href="{% url 'yourbooking' %}">Your Booking</a>
                 </div>
 
                 <!-- Sign in, Register Section -->

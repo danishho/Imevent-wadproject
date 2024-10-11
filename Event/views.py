@@ -112,3 +112,11 @@ def book(request, event_id):
                 booking.save()
                 return redirect('index')  # Redirect to a success page
     return render(request, 'book.html', context)
+
+
+def myevent(request):
+    return None
+
+
+def yourbooking(request):
+    return None
