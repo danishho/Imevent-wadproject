@@ -115,8 +115,34 @@ def book(request, event_id):
 
 
 def myevent(request):
-    return None
+    events = Event.objects.filter(created_by=request.user.id)
+    for event in events:
+        event.booked_count = Booking.objects.filter(event=event).count()
+    return render(request, 'myevent.html', {'events': events})
 
 
 def yourbooking(request):
     return None
+
+
+def update_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    if request.method == 'GET':
+        form = EventForm()
+        form = EventForm(initial={'title': event.title, 'image': event.image, 'description': event.description,
+                                  'location': event.location, 'start_date': event.start_date,
+                                  'end_date': event.end_date, 'max_tickets': event.max_tickets})
+        return render(request, 'updateEvent.html', {'form': form, })
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('myevent')
+
+    return render(request, 'myevent.html')
+
+
+def delete_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    event.delete()
+    return redirect('myevent')

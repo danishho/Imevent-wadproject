@@ -48,7 +48,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px; /* Reduced gap */
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 .event-card {
     width: 300px;

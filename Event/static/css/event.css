@@ -27,7 +27,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px; /* Reduced gap */
-    justify-content: flex-start;
+    justify-content: space-evenly;
 }
 .event-card {
     width: 300px;
