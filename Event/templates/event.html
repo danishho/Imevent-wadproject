@@ -9,10 +9,11 @@
 <div class="search">
     <div class="search-container">
         <h1>Search Event</h1>
-        <input type="text" id="search-input">
+        <i id="search-icon" class="fas fa-search"></i>
+        <input type="text" id="search-input" onkeyup="searchEvents()">
     </div>
 </div>
-<div class="events-container">
+<div class="events-container" id="replaceable-content">
     {% for event in events %}
         <a href="{% url 'eventDetails' event.id %}" class="event-card">
             {% if event.image %}
@@ -25,8 +26,17 @@
                 <p>Location: {{ event.location }}</p>
                 <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
                 <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                <div class="tags">
+                    {% for tag in event.tags.all %}
+                        <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
             </div>
         </a>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static "js/search.js" %}"></script>
 {% endblock %}

@@ -18,6 +18,8 @@
 }
 
 #search-input {
+    border: none;
+    border-radius: 10px;
     padding: 10px;
     width: 300px;
     font-size: 16px;
@@ -55,4 +57,33 @@
 .event-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a hover effect for better UX */
     text-decoration: none; /* Remove underline from links */
+}
+
+.tag {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    display: inline-block;
+}
+
+.tag.dcs {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+}
+
+.tag.dia {
+    background-color: #10b981; /* Green */
+    color: white;
+}
+
+.tag.dcd {
+    background-color: #fbbf24; /* Yellow */
+    color: white;
+}
+
+.tag.dec {
+    background-color: #ef4444; /* Red */
+    color: white;
 }

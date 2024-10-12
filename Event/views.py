@@ -9,6 +9,8 @@ from .models import CustomUser, Event, Booking
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
+from django.http import JsonResponse
+
 
 
 def index(request):
@@ -177,3 +179,27 @@ def edit_profile(request, user_id):
             update_session_auth_hash(request, user)
             return redirect('index')
     return render(request, 'editprofile.html')
+
+
+def search(request):
+    query = request.GET.get('q', '')
+    if query.upper() in ['DCS','DCD','DIA','DEC']:
+        events = Event.objects.filter(tags__icontains=query)
+    else:
+        events = Event.objects.filter(title__icontains=query)
+    event_data = []
+    for event in events:
+        booked_count = Booking.objects.filter(event=event).count()
+        tags = list(event.tags.values_list('name', flat=True))
+        event_data.append({
+            'id': event.id,
+            'title': event.title,
+            'location': event.location,
+            'start_date': event.start_date.strftime('%d/%m/%Y'),
+            'end_date': event.end_date.strftime('%d/%m/%Y'),
+            'booked_count': booked_count,
+            'max_tickets': event.max_tickets,
+            'image_url': event.image.url if event.image else None,
+            'tags': tags,
+        })
+    return JsonResponse(event_data, safe=False)
