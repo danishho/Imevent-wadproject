@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
+from django.db.models import Q
 
 
 
@@ -183,10 +184,9 @@ def edit_profile(request, user_id):
 
 def search(request):
     query = request.GET.get('q', '')
-    if query.upper() in ['DCS','DCD','DIA','DEC']:
-        events = Event.objects.filter(tags__icontains=query)
-    else:
-        events = Event.objects.filter(title__icontains=query)
+    events = Event.objects.filter(
+        Q(title__icontains=query) | Q(tags__name__icontains=query)
+    ).distinct()
     event_data = []
     for event in events:
         booked_count = Booking.objects.filter(event=event).count()
