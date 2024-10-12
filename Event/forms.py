@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
-from .models import CustomUser, Event, Booking
+from .models import CustomUser, Event, Booking ,Tag
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -33,9 +33,15 @@ class LoginForm(AuthenticationForm):
 
 
 class EventForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Select Tags"
+    )
     class Meta:
         model = Event
-        fields = ['title', 'image', 'description', 'location', 'start_date', 'end_date', 'max_tickets']
+        fields = ['title', 'image', 'description', 'location', 'start_date', 'end_date', 'max_tickets', 'tags']
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}),

@@ -78,6 +78,42 @@
     text-decoration: none; /* Remove underline from links */
 }
 
+.tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    display: inline-block;
+}
+
+.tag.dcs {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+}
+
+.tag.dia {
+    background-color: #10b981; /* Green */
+    color: white;
+}
+
+.tag.dcd {
+    background-color: #fbbf24; /* Yellow */
+    color: white;
+}
+
+.tag.dec {
+    background-color: #ef4444; /* Red */
+    color: white;
+}
+
 /*.book-btn {*/
 /*    background-color: #007bff;*/
 /*    color: white;*/

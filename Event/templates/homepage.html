@@ -33,6 +33,11 @@
                 <p>Location: {{ event.location }}</p>
                 <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
                 <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                <div class="tags">
+                    {% for tag in event.tags.all %}
+                        <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
             </div>
         </a>
     {% endfor %}

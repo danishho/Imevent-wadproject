@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser, Event, Booking
+from .models import CustomUser, Event, Booking , Tag
 
 
 class CustomUserAdmin(UserAdmin):
@@ -25,8 +25,8 @@ class CustomUserAdmin(UserAdmin):
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'location', 'start_date', 'end_date', 'max_tickets', 'created_by']
-    list_filter = ['start_date', 'end_date', 'created_by']
+    list_display = ['title', 'location', 'start_date', 'end_date', 'max_tickets', 'get_tags', 'created_by']
+    list_filter = ['start_date', 'end_date', 'created_by', 'tags']
     search_fields = ['title', 'location']
     readonly_fields = ['created_by']
 
@@ -35,6 +35,9 @@ class EventAdmin(admin.ModelAdmin):
             obj.created_by = request.user  # Automatically set the creator to the logged-in user
         super().save_model(request, obj, form, change)
 
+    def get_tags(self, obj):
+        return ", ".join(tag.name for tag in obj.tags.all())
+    get_tags.short_description = 'Tags'
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['user', 'event', 'booking_date']
@@ -42,6 +45,11 @@ class BookingAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'event__title']
 
 
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+admin.site.register(Tag, TagAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Booking, BookingAdmin)

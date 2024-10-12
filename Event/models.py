@@ -18,6 +18,11 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
@@ -27,6 +32,7 @@ class Event(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     max_tickets = models.PositiveIntegerField()
+    tags = models.ManyToManyField(Tag, related_name='events', blank=True)
     created_by = models.ForeignKey(CustomUser, related_name='created_events', on_delete=models.CASCADE, limit_choices_to={'user_type': 'mpp'})
 
     def __str__(self):

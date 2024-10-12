@@ -82,6 +82,7 @@ def createEvent(request):
             event = form.save(commit=False)
             event.created_by = request.user
             event.save()
+            form.save_m2m()
             return redirect('index')
     return render(request, 'addevent.html')
 
