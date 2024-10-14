@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm, CustomUserChangeForm, CustomPasswordChangeForm
 from .models import CustomUser, Event, Booking
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
@@ -39,11 +39,9 @@ def register(request):
 
 
 def login(request):
-
     if request.method == 'GET':
         form = LoginForm()
         return render(request, 'login.html', {'form': form,})
-
 
     elif request.method == 'POST':
         email = request.POST.get('username')
@@ -164,22 +162,37 @@ def cancel_booking(request,booking_id):
 
 
 def edit_profile(request, user_id):
-    if request.method == 'GET':
-        profile = CustomUserChangeForm(instance=request.user)
-        password = PasswordChangeForm(user=request.user)
-        return render(request, 'editprofile.html', {"user": profile, "password": password})
-    elif request.method == 'POST':
-        profile = CustomUserChangeForm(request.POST, instance=request.user)
-        password = PasswordChangeForm(user=request.user, data=request.POST)
+    profile = CustomUserChangeForm(instance=request.user)
+    password = CustomPasswordChangeForm(user=request.user)
 
-        if profile.is_valid():
-            profile.save()
-            return redirect('index')
-        elif password.is_valid():
-            user = password.save()
-            update_session_auth_hash(request, user)
-            return redirect('index')
-    return render(request, 'editprofile.html')
+    if request.method == 'GET':
+        return render(request, 'editprofile.html', {"user": profile, "password": password})
+
+    elif request.method == 'POST':
+        if 'save_profile' in request.POST:  # Check if profile form is submitted
+            profile = CustomUserChangeForm(request.POST, instance=request.user)
+            if profile.is_valid():
+                profile.save()
+                messages.success(request, "Profile updated successfully!")
+                return redirect('index')
+            else:
+                for field, errors in profile.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+
+        elif 'change_password' in request.POST:  # Check if password form is submitted
+            password = CustomPasswordChangeForm(user=request.user, data=request.POST)
+            if password.is_valid():
+                user = password.save()
+                update_session_auth_hash(request, user)  # Important to prevent logout
+                messages.success(request, "Your password was changed successfully!")
+                return redirect('index')
+            else:
+                for field, errors in password.errors.items():
+                    for error in errors:
+                        messages.error(request, error)
+
+    return render(request, 'editprofile.html', {"user": profile, "password": password})
 
 
 def search(request):

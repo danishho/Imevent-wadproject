@@ -8,19 +8,34 @@
 
 
 {% block content %}
-    <div class="form-container">
+    <div class="form-container" >
     <h2>Edit Profile</h2>
-    <form method="post" >
+    <form method="post" name="change_profile" >
         {% csrf_token %}
         {{ user.as_p }}
+        {% if user.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in user %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in user.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         <button type="submit"  class="btn btn-primary">Save changes</button>
     </form>
 
     <h2 class="mt-5">Change Password</h2>
-    <form method="post" name="change_password" >
-        {% csrf_token %}
-        {{ password.as_p }}
-        <button type="submit"  class="btn btn-secondary">Change password</button>
-    </form>
+    <form method="post">
+    {% csrf_token %}
+    <h3>Change Password</h3>
+    {{ password.as_p }}
+    <button type="submit" name="change_password">Change Password</button>
+  </form>
 </div>
 {% endblock %}
