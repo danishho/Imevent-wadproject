@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 USER_TYPE_CHOICES = (
     ('student', 'Student'),
     ('Mpp', 'MPP'),
+    ('Admin', 'Admin')
 )
 
 
@@ -14,6 +15,12 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='student')
     phone_number = models.CharField(max_length=15, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        # If the user is a superuser, set the user_type to 'admin'
+        if self.is_superuser:
+            self.user_type = 'Admin'
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.username

@@ -61,6 +61,29 @@
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
+
 .book-btn:hover {
     background-color: #e04848;
+}
+
+
+.full-message {
+    background-color: #28a745; /* Green background */
+    color: white;
+    padding: 7px 25px;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 16px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.full-message:hover {
+    background-color: #218838;
 }

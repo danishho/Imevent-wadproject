@@ -24,7 +24,11 @@
 
                 <!-- Book Now Button -->
                 <div class="book-btn-container">
-                    <a href="{% url 'book' event.id %}" class="book-btn">Book Now</a>
+                    {% if event.booked_count < event.max_tickets %}
+                        <a href="{% url 'book' event.id %}" class="book-btn">Book Now</a>
+                    {% else %}
+                        <p class="full-message">Full</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

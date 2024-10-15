@@ -4,18 +4,18 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomAdminUserChangeForm
 from .models import CustomUser, Event, Booking , Tag
 
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
+    form = CustomAdminUserChangeForm
     model = CustomUser
-    list_display = ["email", "username", "user_type", "is_staff"]
+    list_display = ["email", "username", "user_type", "is_staff", "is_superuser"]
     # Allow admin to change user_type in both the change form and when adding a new user
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('user_type','phone_number')}),
+        (None, {'fields': ('user_type', 'phone_number')}),
     )
 
     # Include user_type when adding a new user

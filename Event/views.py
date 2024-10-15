@@ -16,9 +16,30 @@ from django.db.models import Q
 
 def index(request):
     events = Event.objects.filter(start_date__gte=timezone.now()).order_by('start_date')[:4]
+    dcs = Event.objects.filter(tags__name='DCS').order_by('start_date')[:4]
+    dcd = Event.objects.filter(tags__name='DCD').order_by('start_date')[:4]
+    dec = Event.objects.filter(tags__name='DEC').order_by('start_date')[:4]
+    dia = Event.objects.filter(tags__name='DIA').order_by('start_date')[:4]
+
     for event in events:
         event.booked_count = Booking.objects.filter(event=event).count()
-    return render(request, 'homepage.html', {'events': events})
+
+    for event in events:
+        event.booked_count = Booking.objects.filter(event=event).count()
+
+    for event in dcs:
+        event.booked_count = Booking.objects.filter(event=event).count()
+
+    for event in dcd:
+        event.booked_count = Booking.objects.filter(event=event).count()
+
+    for event in dec:
+        event.booked_count = Booking.objects.filter(event=event).count()
+
+    for event in dia:
+        event.booked_count = Booking.objects.filter(event=event).count()
+
+    return render(request, 'homepage.html', {'events': events, 'dcs': dcs, 'dec': dec, 'dia': dia, 'dcd': dcd})
 
 
 def register(request):

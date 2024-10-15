@@ -28,6 +28,12 @@ class CustomUserChangeForm(UserChangeForm):
             self.fields.pop('password')
 
 
+class CustomAdminUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'user_type', 'password', 'is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions']
+
+
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(widget=forms.EmailInput(attrs={'autofocus': True, 'class': 'form-control'}), label="Email")
     password = forms.CharField(label="Password", strip=False, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
