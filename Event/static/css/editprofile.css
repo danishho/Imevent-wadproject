@@ -1,3 +1,85 @@
 form[name="change_password"] ul {
     display: none;
 }
+
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form .form-group,
+.password-form .form-group {
+    margin-bottom: 20px;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-container label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-container input:focus {
+    border-color: #6a0dad;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #6a0dad;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #5a0b9a;
+}
+
+.alert.alert-danger {
+    color: #d9534f;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.mt-5 {
+    margin-top: 40px;
+}
+
+
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+    color: red;
+}
+.messages li {
+    margin-bottom: 5px;
+}

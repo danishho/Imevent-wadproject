@@ -39,7 +39,7 @@ h1 {
 
 /* Table header background color and font size */
 .event-table th {
-    background-color: #4CAF50;
+    background-color: #5a0b9a;
     color: white;
     font-size: 1.2em;
 }
@@ -77,7 +77,7 @@ h1 {
 
 /* Update button styling */
 .action-btn.update {
-    background-color: #28a745;
+    background-color: #5a0b9a;
     color: white;
 }
 

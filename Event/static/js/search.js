@@ -31,15 +31,32 @@ function searchEvents() {
                 eventInfo.appendChild(title);
 
                 var location = document.createElement('p');
-                location.textContent = 'Location: ' + event.location;
+                var locationIcon = document.createElement('i');
+                locationIcon.className = 'fa-solid fa-location-dot';
+                locationIcon.style.color = 'red';
+                location.appendChild(locationIcon);
+                location.appendChild(document.createTextNode(' ' + event.location));
                 eventInfo.appendChild(location);
 
                 var date = document.createElement('p');
-                date.textContent = 'Date: ' + event.start_date + ' - ' + event.end_date;
+                var dateIcon = document.createElement('i');
+                dateIcon.className = 'fa-regular fa-calendar';
+                dateIcon.style.color = 'black';
+                date.appendChild(dateIcon);
+                date.appendChild(document.createTextNode(' ' + event.start_date + ' - ' + event.end_date));
                 eventInfo.appendChild(date);
 
                 var capacity = document.createElement('p');
-                capacity.textContent = 'Capacity: ' + event.booked_count + '/' + event.max_tickets;
+                capacity.className = 'ticket-status';
+                var capacityIcon = document.createElement('i');
+                capacityIcon.className = 'fa-solid fa-person';
+                capacity.appendChild(capacityIcon);
+                capacity.appendChild(document.createTextNode(' ' + event.booked_count + '/' + event.max_tickets));
+                if (event.booked_count === event.max_tickets) {
+                    capacity.classList.add('full');
+                } else {
+                    capacity.classList.add('available');
+                }
                 eventInfo.appendChild(capacity);
 
                 var tagsDiv = document.createElement('div');

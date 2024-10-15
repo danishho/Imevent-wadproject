@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/addevent.css' %}">
+{%  endblock %}
 
 {% block content %}
+
 <div class="form-container">
         <h1>Create New Event</h1>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" class="addevent-form">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">Event Title:</label>
@@ -35,8 +40,10 @@
                 {{ form.max_tickets }}
             </div>
             <div class="form-group">
-                <label for="Tags">Max Tickets:</label>
+                <label for="tags">Tags:</label>
+                <div class="checkbox-group">
                 {{ form.tags }}
+                </div>
             </div>
             <button type="submit">Create Event</button>
         </form>

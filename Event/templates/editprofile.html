@@ -1,41 +1,58 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
 {% endblock %}
 
-
 {% block content %}
-    <div class="form-container" >
-    <h2>Edit Profile</h2>
-    <form method="post" name="change_profile" >
-        {% csrf_token %}
-        {{ user.as_p }}
-        {% if user.errors %}
-                <div class="alert alert-danger">
-                    <ul>
-                        {% for field in user %}
-                            {% for error in field.errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in user.non_field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-        <button type="submit"  class="btn btn-primary">Save changes</button>
-    </form>
+    <div class="form-container" id="profile-section">
+        <h2>Edit Profile</h2>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                {% if 'profile' in message.tags and message != "Your password was changed successfully!" %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="post" class="profile-form" name="save_profile" >
+            {% csrf_token %}
+            <div class="form-group">
+                {{ user.username.label_tag }} {{ user.username }}
+            </div>
+            <div class="form-group">
+                {{ user.email.label_tag }} {{ user.email }}
+            </div>
+            <div class="form-group">
+                {{ user.phone_number.label_tag }} {{ user.phone_number }}
+            </div>
+            <button type="submit" class="btn btn-primary" name="save_profile">Save changes</button>
+        </form>
 
-    <h2 class="mt-5">Change Password</h2>
-    <form method="post">
-    {% csrf_token %}
-    <h3>Change Password</h3>
-    {{ password.as_p }}
-    <button type="submit" name="change_password">Change Password</button>
-  </form>
-</div>
+        <h2 class="mt-5">Change Password</h2>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                {% if 'password' in message.tags and message != "Profile updated successfully!" %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="post" class="password-form" name="change_password">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ password.old_password.label_tag }} {{ password.old_password }}
+            </div>
+            <div class="form-group">
+                {{ password.new_password1.label_tag }} {{ password.new_password1 }}
+            </div>
+            <div class="form-group">
+                {{ password.new_password2.label_tag }} {{ password.new_password2 }}
+            </div>
+            <button type="submit" name="change_password" class="btn btn-primary">Change Password</button>
+        </form>
+    </div>
 {% endblock %}

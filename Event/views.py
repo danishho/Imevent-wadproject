@@ -11,6 +11,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
 from django.db.models import Q
+from django.urls import reverse
+
 
 
 
@@ -52,7 +54,6 @@ def register(request):
             user = form.save(commit=False)
             user.email = user.email.lower()
             user.save()
-            messages.success(request, 'You have signed up successfully.')
             auth_login(request, user)
             return redirect('index')
         else:
@@ -74,7 +75,6 @@ def login(request):
                 user = authenticate(request, username=user.username, password=password)
                 if user:
                     auth_login(request, user)
-                    messages.success(request, 'Welcome back!')
                     return redirect('index')  # Ensure you have a URL pattern for 'homepage'
 
                 else:
@@ -90,7 +90,6 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    messages.success(request, 'You have been logged out.')
     return redirect('index')
 
 
@@ -158,7 +157,7 @@ def update_event(request, event_id):
         form = EventForm()
         form = EventForm(initial={'title': event.title, 'image': event.image, 'description': event.description,
                                   'location': event.location, 'start_date': event.start_date,
-                                  'end_date': event.end_date, 'max_tickets': event.max_tickets})
+                                  'end_date': event.end_date, 'max_tickets': event.max_tickets, 'tags': event.tags.all()})
         return render(request, 'updateEvent.html', {'form': form, })
     # this put
     if request.method == 'POST':
@@ -194,24 +193,24 @@ def edit_profile(request, user_id):
             profile = CustomUserChangeForm(request.POST, instance=request.user)
             if profile.is_valid():
                 profile.save()
-                messages.success(request, "Profile updated successfully!")
-                return redirect('index')
+                messages.success(request, "Profile updated successfully!", extra_tags='profile')
+                return redirect(f'/editProfile/{user_id}#profile-section')
             else:
                 for field, errors in profile.errors.items():
                     for error in errors:
-                        messages.error(request, f"{field}: {error}")
+                        messages.error(request, f"{field}: {error}", extra_tags='profile')
 
         elif 'change_password' in request.POST:  # Check if password form is submitted
             password = CustomPasswordChangeForm(user=request.user, data=request.POST)
             if password.is_valid():
                 user = password.save()
                 update_session_auth_hash(request, user)  # Important to prevent logout
-                messages.success(request, "Your password was changed successfully!")
-                return redirect('index')
+                messages.success(request, "Your password was changed successfully!", extra_tags='password')
+                return redirect('edit_profile', user_id=user_id)
             else:
                 for field, errors in password.errors.items():
                     for error in errors:
-                        messages.error(request, error)
+                        messages.error(request, error, extra_tags='password')
 
     return render(request, 'editprofile.html', {"user": profile, "password": password})
 

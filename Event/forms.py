@@ -6,22 +6,20 @@ from .models import CustomUser, Event, Booking ,Tag
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ("username", "email", "phone_number", "password1", "password2", "user_type", )
+        fields = ("username", "email", "phone_number", "password1", "password2")
 
     def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['user_type'].widget.attrs.update({'class': 'form-control'})
         self.fields['phone_number'].widget.attrs.update({'class': 'form-control'})
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ("username", "email", "user_type", "phone_number")
+        fields = ("username", "email", "phone_number")
 
     def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
-        self.fields['user_type'].widget.attrs.update({'class': 'form-control'})
         self.fields['phone_number'].widget.attrs.update({'class': 'form-control'})
 
         if 'password' in self.fields:

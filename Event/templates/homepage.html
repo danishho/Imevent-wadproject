@@ -15,32 +15,36 @@
 {#    <div>#}
 {#        need to put something here#}
 {#    </div>#}
-    <br>
+
     <div class="inline-flex">
         <span class="blue-dot"></span>
         <h3 class="font-bold text-lg">Upcoming events</h3>
     </div>
     <div class="events-container">
-    {% for event in events %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
-            {% if event.image %}
-                <img src="{{ event.image.url }}" alt="{{ event.title }}">
-            {% else %}
-                <p>No image available.</p>
-            {% endif %}
-            <div class="event-info">
-                <h2>{{ event.title }}</h2>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
-                <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
-                <div class="tags">
-                    {% for tag in event.tags.all %}
-                        <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
-                    {% endfor %}
+        {% for event in events %}
+            <a href="{% url 'eventDetails' event.id %}" class="event-card">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                {% else %}
+                    <p>No image available.</p>
+                {% endif %}
+                <div class="event-info">
+                    <h2>{{ event.title }}</h2>
+                    <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+                    <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
+                    {% if event.booked_count == event.max_tickets %}
+                        <p class="ticket-status full"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% else %}
+                        <p class="ticket-status available"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% endif %}
+                    <div class="tags">
+                        {% for tag in event.tags.all %}
+                            <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </a>
-    {% endfor %}
+            </a>
+        {% endfor %}
     </div>
 
 
@@ -51,23 +55,27 @@
     <div class="events-container">
     {% for event in dcs %}
         <a href="{% url 'eventDetails' event.id %}" class="event-card">
-            {% if event.image %}
-                <img src="{{ event.image.url }}" alt="{{ event.title }}">
-            {% else %}
-                <p>No image available.</p>
-            {% endif %}
-            <div class="event-info">
-                <h2>{{ event.title }}</h2>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
-                <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
-                <div class="tags">
-                    {% for tag in event.tags.all %}
-                        <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
-                    {% endfor %}
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                {% else %}
+                    <p>No image available.</p>
+                {% endif %}
+                <div class="event-info">
+                    <h2>{{ event.title }}</h2>
+                    <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+                    <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
+                    {% if event.booked_count == event.max_tickets %}
+                        <p class="ticket-status full"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% else %}
+                        <p class="ticket-status available"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% endif %}
+                    <div class="tags">
+                        {% for tag in event.tags.all %}
+                            <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
     {% endfor %}
     </div>
 
@@ -78,23 +86,27 @@
     <div class="events-container">
     {% for event in dec %}
         <a href="{% url 'eventDetails' event.id %}" class="event-card">
-            {% if event.image %}
-                <img src="{{ event.image.url }}" alt="{{ event.title }}">
-            {% else %}
-                <p>No image available.</p>
-            {% endif %}
-            <div class="event-info">
-                <h2>{{ event.title }}</h2>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
-                <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
-                <div class="tags">
-                    {% for tag in event.tags.all %}
-                        <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
-                    {% endfor %}
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                {% else %}
+                    <p>No image available.</p>
+                {% endif %}
+                <div class="event-info">
+                    <h2>{{ event.title }}</h2>
+                    <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+                    <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
+                    {% if event.booked_count == event.max_tickets %}
+                        <p class="ticket-status full"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% else %}
+                        <p class="ticket-status available"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                    {% endif %}
+                    <div class="tags">
+                        {% for tag in event.tags.all %}
+                            <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
     {% endfor %}
     </div>
 
@@ -113,9 +125,13 @@
             {% endif %}
             <div class="event-info">
                 <h2>{{ event.title }}</h2>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
-                <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+                <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
+                {% if event.booked_count == event.max_tickets %}
+                    <p class="ticket-status full"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                {% else %}
+                    <p class="ticket-status available"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                {% endif %}
                 <div class="tags">
                     {% for tag in event.tags.all %}
                         <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
@@ -140,9 +156,13 @@
             {% endif %}
             <div class="event-info">
                 <h2>{{ event.title }}</h2>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
-                <p>Capacity: {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+                <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
+                {% if event.booked_count == event.max_tickets %}
+                    <p class="ticket-status full"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                {% else %}
+                    <p class="ticket-status available"><i class="fa-solid fa-person"></i> {{ event.booked_count }}/{{ event.max_tickets }}</p>
+                {% endif %}
                 <div class="tags">
                     {% for tag in event.tags.all %}
                         <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>

@@ -1,31 +1,8 @@
 
-/*.search {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 20vh;*/
-/*    text-align: center;*/
-/*    border: transparent;*/
-/*    margin: 0 auto;*/
-/*    background-color: aquamarine;*/
-/*}*/
-
-/*.search-container {*/
-/*    margin-bottom: 10px;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*}*/
-
-/*#search-input {*/
-/*    padding: 10px;*/
-/*    width: 300px;*/
-/*    font-size: 16px;*/
-/*}*/
-
 .inline-flex {
     display: inline-flex;
     align-items: center;
+    margin-left: 10px;
     gap: 0.5rem;
 }
 
@@ -36,46 +13,59 @@
     display: inline-block;
 }
 
-/*.font-bold {*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.text-lg {*/
-/*    font-size: 1.125rem;*/
-/*    line-height: 1.75rem;*/
-/*}*/
 .events-container {
     display: flex;
+    margin: 10px 50px;
     flex-wrap: wrap;
-    gap: 10px; /* Reduced gap */
+    gap: 20px; /* Increased gap for better spacing */
     justify-content: flex-start;
 }
+
 .event-card {
     width: 300px;
     padding: 15px;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #ffffff; /* Changed to white for better contrast */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color */
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 .event-card img {
     width: 100%;
     border-radius: 8px;
     height: 150px;
     object-fit: cover;
 }
+
 .event-info h2 {
     font-size: 18px;
     margin: 10px 0;
 }
+
 .event-info p {
     margin: 5px 0;
 }
-.event-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a hover effect for better UX */
-    text-decoration: none; /* Remove underline from links */
+
+.ticket-status {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.ticket-status.full {
+    color: red;
+}
+
+.ticket-status.available {
+    color: green;
 }
 
 .tags {
@@ -113,17 +103,3 @@
     background-color: #ef4444; /* Red */
     color: white;
 }
-
-/*.book-btn {*/
-/*    background-color: #007bff;*/
-/*    color: white;*/
-/*    padding: 10px 15px;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    border-radius: 5px;*/
-/*    display: block;*/
-/*    width: fit-content;*/
-/*    position: absolute;*/
-/*    right: 15px;*/
-/*    bottom: 15px;*/
-/*}*/
