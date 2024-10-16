@@ -29,7 +29,9 @@ class CustomUserChangeForm(UserChangeForm):
 class CustomAdminUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'user_type', 'password', 'is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions']
+        # fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'user_type', 'password', 'is_staff',
+        #           'is_active', 'is_superuser', 'groups', 'user_permissions']
+        fields = ['user_type', 'is_superuser',]
 
 
 class LoginForm(AuthenticationForm):

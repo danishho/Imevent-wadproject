@@ -1,18 +1,27 @@
 /* CSS for Event Details Page */
-
 .container-details {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px;
+    background: linear-gradient(135deg, #e9f7f7, #ffffff);
+    border-radius: 20px;
 }
+
 .event-card {
     background: white;
-    width: 80%;
+    width: 85%;
     display: flex;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.2s ease;
 }
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
 /* Left: Event Image */
 .event-image {
     flex: 1;
@@ -20,70 +29,91 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
+
 .event-image img {
-    width: 80%;
+    width: 85%;
     border-radius: 15px;
+    transition: transform 0.3s ease;
 }
+
+.event-image img:hover {
+    transform: scale(1.05);
+}
+
 /* Right: Event Details */
 .event-details {
     flex: 2;
     padding: 40px;
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
 }
+
 .event-title {
-    font-size: 32px;
-    color: #444;
-    margin-bottom: 10px;
+    font-size: 34px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
+
 .event-meta {
-    color: #888;
-    font-size: 14px;
+    color: #777;
+    font-size: 15px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
+
+.event-meta i {
+    margin-right: 8px;
+}
+
 .event-description {
     color: #555;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 20px;
+    font-weight: 500;
 }
+
 /* Book Button */
 .book-btn {
     background-color: #ff5a5f;
     color: white;
-    padding: 12px 25px;
+    padding: 12px 30px;
     text-align: center;
     border-radius: 50px;
     font-size: 16px;
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 90, 95, 0.4);
 }
 
 .book-btn:hover {
     background-color: #e04848;
+    transform: translateY(-2px);
 }
 
-
+/* Availability Styling */
 .full-message {
-    background-color: #28a745; /* Green background */
+    background-color: #ff5a5f;
     color: white;
-    padding: 7px 25px;
+    padding: 10px 30px;
     text-align: center;
     border-radius: 50px;
     font-size: 16px;
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-    width: fit-content;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
-
 .full-message:hover {
-    background-color: #218838;
+    background-color: #d23e3e;
+    transform: translateY(-2px);
 }

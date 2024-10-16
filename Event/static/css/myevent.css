@@ -94,3 +94,49 @@ h1 {
 .action-container .save, .cancel {
     display: none;
 }
+
+/* Description text truncation */
+.event-table td.description {
+    max-width: 200px; /* Adjust the width to your preference */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures that text exceeding the width will be hidden */
+    text-overflow: ellipsis; /* Adds the '...' to indicate that text is truncated */
+}
+
+.tags {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Makes the tags display vertically */
+    gap: 5px;
+}
+
+.tag {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    display: inline-block;
+    width: fit-content; /* Adjusts the width to fit the content */
+}
+
+/* Custom colors for each tag type */
+.tag.dcs {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+}
+
+.tag.dia {
+    background-color: #10b981; /* Green */
+    color: white;
+}
+
+.tag.dcd {
+    background-color: #fbbf24; /* Yellow */
+    color: white;
+}
+
+.tag.dec {
+    background-color: #ef4444; /* Red */
+    color: white;
+}

@@ -1,0 +1,29 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/addevent.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+    <h1> Update User Role</h1>
+    <p>Username:{{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <p>User Type: {{ user.user_type }}</p>
+    <form method="POST" enctype="multipart/form-data" class="addevent-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="User Type">Change User Type:</label>
+            {{ form.user_type }}
+        </div>
+        {% if request.user.is_superuser %}
+            <div class="form-group">
+                <label for="User Type">Super User:</label>
+                {{ form.is_superuser }}
+            </div>
+        {% endif %}
+        <button type="submit">Create Event</button>
+    </form>
+</div>
+{% endblock %}

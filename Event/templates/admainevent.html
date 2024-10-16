@@ -1,0 +1,54 @@
+{% extends 'adminbase.html' %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/myevent.css' %}">
+{% endblock %}
+
+{% block content %}
+    <center><h1>Event List</h1></center>
+     <div class="event-table-container">
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Tags</th>
+                    <th>Max Tickets</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td><img src="{{ event.image.url }}" alt="Event Image"></td>
+                        <td>{{ event.title }}</td>
+                        <td class="description">{{ event.description }}</td>
+                        <td>{{ event.location }}</td>
+                        <td>{{ event.start_date|date:"d/m/y" }}</td>
+                        <td>{{ event.start_date|date:"d/m/y" }}</td>
+                        <td>
+                            <div class="tags">
+                                {% for tag in event.tags.all %}
+                                    <span class="tag {{ tag.name|lower }}">{{ tag.name }}</span>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>{{ event.booked_count }}/{{ event.max_tickets }}</td>
+                        <td>
+                            <div class="action-container">
+                                <a href="{% url 'update_event' event.id %}"><button class="action-btn update">Update</button></a>
+                                <a href="{% url 'delete_event' event.id %}"><button class="action-btn delete">Delete</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

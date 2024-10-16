@@ -1,0 +1,97 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Title styling */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Event table container styling */
+.event-table-container {
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Event table styling */
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+/* Table headers and cells */
+.event-table th,
+.event-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table header background color and font size */
+.event-table th {
+    background-color: #5a0b9a;
+    color: white;
+    font-size: 1.2em;
+}
+
+/* Image styling inside table cells */
+.event-table td img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* General table cell font styling */
+.event-table td {
+    font-size: 1em;
+    color: #555;
+    vertical-align: middle; /* Ensures that content aligns vertically in the center of the row */
+}
+
+/* Flexbox to ensure buttons stay side by side */
+.action-container {
+    display: flex; /* Ensures horizontal alignment */
+    justify-content: center; /* Centers the buttons inside the cell */
+    gap: 10px; /* Adds space between buttons */
+}
+
+/* Action button styling */
+.action-btn {
+    display: inline-flex; /* Ensures inline layout with flexibility */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Update button styling */
+.action-btn.update {
+    background-color: #5a0b9a;
+    color: white;
+}
+
+/* Delete button styling */
+.action-btn.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Hover effect for buttons */
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+.action-container .save, .cancel {
+    display: none;
+}

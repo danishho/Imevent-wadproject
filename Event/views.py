@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm, CustomUserChangeForm, CustomPasswordChangeForm
+from .forms import CustomUserCreationForm, LoginForm, EventForm, BookingForm, CustomUserChangeForm, CustomPasswordChangeForm, CustomAdminUserChangeForm
 from .models import CustomUser, Event, Booking
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
@@ -75,8 +75,10 @@ def login(request):
                 user = authenticate(request, username=user.username, password=password)
                 if user:
                     auth_login(request, user)
-                    return redirect('index')  # Ensure you have a URL pattern for 'homepage'
-
+                    if user.user_type == 'Admin':
+                        return redirect('adminpage')  # Ensure you have a URL pattern for 'adminpage'
+                    else:
+                        return redirect('index')
                 else:
                     messages.error(request, 'Invalid password.')
             except CustomUser.DoesNotExist:
@@ -96,6 +98,8 @@ def logout(request):
 def createEvent(request):
     if request.method == 'GET':
         form = EventForm()
+        if request.user.user_type == 'Admin':
+            return render(request,'adminAddEvent.html',{'form':form})
         return render(request, 'addevent.html', {'form': form, })
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES)
@@ -104,6 +108,8 @@ def createEvent(request):
             event.created_by = request.user
             event.save()
             form.save_m2m()
+            if request.user.user_type == 'Admin':
+                return redirect('myevent')
             return redirect('index')
     return render(request, 'addevent.html')
 
@@ -120,7 +126,7 @@ def eventDetails(request, event_id):
     event.booked_count = Booking.objects.filter(event=event).count()
     return render(request, 'eventDetails.html', {'event': event})
 
-
+@login_required()
 def book(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     if request.method == 'GET':
@@ -139,6 +145,12 @@ def book(request, event_id):
 
 
 def myevent(request):
+    if request.user.user_type == 'Admin':
+        events = Event.objects.all()
+        for event in events:
+            event.booked_count = Booking.objects.filter(event=event).count()
+        return render(request, 'admainevent.html', {'events': events})
+
     events = Event.objects.filter(created_by=request.user.id)
     for event in events:
         event.booked_count = Booking.objects.filter(event=event).count()
@@ -147,6 +159,9 @@ def myevent(request):
 
 def yourbooking(request):
     bookings = Booking.objects.select_related('event').filter(user_id=request.user.id)
+    if request.user.user_type == 'Admin':
+        bookings = Booking.objects.all()
+        return render(request, 'adminBooking.html', {"bookings": bookings})
     return render(request, 'yourbooking.html', {'bookings': bookings})
 
 
@@ -158,6 +173,8 @@ def update_event(request, event_id):
         form = EventForm(initial={'title': event.title, 'image': event.image, 'description': event.description,
                                   'location': event.location, 'start_date': event.start_date,
                                   'end_date': event.end_date, 'max_tickets': event.max_tickets, 'tags': event.tags.all()})
+        if request.user.user_type == 'Admin':
+            return render(request,'adminUpdateEvent.html',{'form': form})
         return render(request, 'updateEvent.html', {'form': form, })
     # this put
     if request.method == 'POST':
@@ -236,3 +253,25 @@ def search(request):
             'tags': tags,
         })
     return JsonResponse(event_data, safe=False)
+
+
+def adminpage(request):
+    user = CustomUser.objects.all()
+    return render(request, 'adminpage.html', {'users': user})
+
+
+def delete_user(request, user_id):
+    user = CustomUser.objects.get(pk=user_id)
+    user.delete()
+    return redirect('adminpage')
+
+
+def update_user(request, user_id):
+    user = CustomUser.objects.get(pk=user_id)
+    userform = CustomAdminUserChangeForm(instance=user)
+    if request.method == 'POST':
+        userform = CustomAdminUserChangeForm(request.POST, instance=user)
+        if userform.is_valid():
+            userform.save()
+            return redirect('adminpage')
+    return render(request, 'adminUpdateUser.html', {'form': userform, 'user': user})

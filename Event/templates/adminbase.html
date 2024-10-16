@@ -1,0 +1,282 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% block extra_head %}
+    {% endblock %}
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* Updated font */
+            margin: 10px;
+            padding: 0;
+        }
+
+        .nav {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 80rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            height: 150px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-right: 2rem;
+            text-decoration: none;
+            color: #6a0dad;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+
+        /* Hover Effect */
+        .nav-links a:hover {
+            background-color: #6a0dad;
+            color: #fff;
+        }
+
+        /* Active Link */
+        .nav-links a.active {
+            background-color: #6a0dad;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-actions .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-actions .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .nav-actions .dropdown-content a {
+            color: #6a0dad;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+        }
+
+
+
+        .nav-actions .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-actions a {
+            margin-right: 2rem; /* Increase the margin to add more space */
+            text-decoration: none;
+            color: #6a0dad;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-actions a:hover {
+            background-color: #6a0dad;
+            color: #fff;
+        }
+
+        .nav-actions a:last-child {
+            margin-right: 0; /* Ensure no extra margin for the last item */
+        }
+        /* Footer section styling */
+    /* Footer section styling */
+#picassoFooter {
+    background-color: #4B0082; /* Matches the header's purple */
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 3px solid #ffffff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow to lift the footer */
+}
+
+/* Footer navigation section */
+.footer-navigation, .footer-contact, .footer-social {
+    margin: 10px;
+}
+
+/* Footer headings */
+.footer-navigation h3, .footer-contact h3, .footer-social h3 {
+    color: #f0f0f0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* Footer navigation list */
+.footer-navigation ul, .footer-social .social-icons {
+    list-style: none;
+    padding: 0;
+}
+
+/* Footer navigation list items */
+.footer-navigation ul li, .social-icon {
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+/* Footer navigation links */
+.footer-navigation ul li a, .social-icon {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px; /* Adding some padding for better clickability */
+    border-radius: 8px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Social icon container */
+.social-icon {
+    display: inline-block;
+    padding: 10px;
+    background-color: #6A0DAD; /* Slightly darker purple */
+    margin-right: 5px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+}
+
+/* Hover effect for footer links and icons */
+.social-icon:hover {
+    transform: scale(1.2); /* Slightly larger scaling effect */
+    background-color: #9932CC; /* Lighter purple on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.footer-navigation ul li a:hover {
+    transform: translateY(-3px); /* Moves the link slightly upward on hover */
+    background-color: #9932CC; /* Background color on hover */
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a shadow effect for depth */
+}
+
+/* Hover effect for social icons */
+.social-icon:hover {
+    transform: scale(1.2);
+    background-color: #D8BFD8; /* Even lighter color for a striking contrast */
+    color: #4B0082; /* Purple text on the light background */
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo Section -->
+                <div class="logo">
+                    <img src="{% static 'image/IMEVENT.svg' %}" alt="Logo">
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <a href="{% url 'adminpage' %}" class="{% if request.path == '/adminpage/' %}active{% endif %}">User</a>
+                    <a href="{% url 'myevent' %}" class="add-event {% if request.path == '/myevent/' %}active{% endif %}">All Event</a>
+                    <a href="{% url 'createEvent' %}" class="add-event {% if request.path == '/createEvent/' %}active{% endif %}">Add Event</a>
+                    <a href="{% url 'yourbooking' %}" class="{% if request.path == '/yourbooking/' %}active{% endif %}">all Booking</a>
+                    {% if request.user.is_superuser %}
+                        <a href="/admin/">Super User Site</a>
+                    {% endif %}
+                </div>
+
+                <!-- Sign in, Register Section -->
+                <div class="nav-actions">
+                    {% if request.user.is_authenticated %}
+                        <div class="dropdown">
+                            <a href="javascript:void(0)">{{ request.user.username }}</a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'edit_profile' request.user.id %}">Edit Profile</a>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login' %}">Log In</a>
+                        <a href="{% url 'register' %}">Register</a>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+{#    <footer id="picassoFooter">#}
+{#    <div class="footer-navigation">#}
+{#        <h3>Quick Links</h3>#}
+{#        <ul>#}
+{#            <li><a href="{% url 'User' %}">Home</a></li>#}
+{#            <li><a href="{% url 'Event' %}">Event</a></li>#}
+{#            <li><a href="{% url 'Tags' %}">Add Event</a></li>#}
+{#            <li><a href="{% url 'booking' %}">Your Booking</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+{#    <div class="footer-contact">#}
+{#        <h3>Contact Us</h3>#}
+{#        <p>Email: admin@gmail.com</p>#}
+{#        <p>Phone: 99999</p>#}
+{#    </div>#}
+{#    <div class="footer-social">#}
+{#        <h3>Follow Us</h3>#}
+{#        <div class="social-icons">#}
+{#            <a href="https://facebook.com" target="_blank" class="social-icon">FB</a>#}
+{#            <a href="https://twitter.com" target="_blank" class="social-icon">TW</a>#}
+{#            <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>#}
+{#        </div>#}
+{#    </div>#}
+{#</footer>#}
+
+    {% block js %}
+    {% endblock %}
+</body>
+</html>
