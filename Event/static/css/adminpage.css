@@ -87,6 +87,11 @@ h1 {
     color: white;
 }
 
+.action-btn.fixed {
+    background-color: limegreen;
+    color: white;
+}
+
 /* Hover effect for buttons */
 .action-btn:hover {
     opacity: 0.9;

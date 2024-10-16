@@ -16,7 +16,7 @@
                 <h1 class="event-title">{{ event.title }}</h1>
                 <p class="event-meta">
                     <i class="fa-regular fa-calendar"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}
-                    | <i class="fa-solid fa-location-dot" style="color: #FF6347;"></i> {{ event.location }}
+                    | <i class="fa-solid fa-location-dot" style="color: #FF6347; margin-left: 5px;"></i> {{ event.location }}
                 </p>
                 <!-- Event Description -->
                 <p class="event-description">{{ event.description }}</p>

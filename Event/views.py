@@ -156,7 +156,7 @@ def myevent(request):
         event.booked_count = Booking.objects.filter(event=event).count()
     return render(request, 'myevent.html', {'events': events})
 
-
+@login_required()
 def yourbooking(request):
     bookings = Booking.objects.select_related('event').filter(user_id=request.user.id)
     if request.user.user_type == 'Admin':

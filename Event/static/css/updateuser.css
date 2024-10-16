@@ -41,20 +41,11 @@
     display: block;
 }
 
-
-
 .checkbox-group {
-    margin-bottom: 10px;
     display: flex;
-    flex-wrap: wrap; /* Allows checkboxes to wrap onto the next line if needed */
-    gap: 10px; /* Add some space between checkboxes */
-}
-
-.checkbox-group label {
-    display: inline-flex;
     align-items: center; /* Aligns checkboxes and text vertically */
     gap: 5px; /* Adds space between checkbox and label */
-    margin-right: 15px; /* Add space between checkbox groups */
+    margin-bottom: 15px; /* Spacing between checkboxes and other elements */
 }
 
 .checkbox-group input[type="checkbox"] {

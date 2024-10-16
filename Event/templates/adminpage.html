@@ -31,8 +31,12 @@
                         <td>{{user.is_superuser }}</td>
                         <td>
                             <div class="action-container">
-                                <a href="{% url 'update_user' user.id %}"><button class="action-btn update">Update Role</button></a>
-                                <a href="{% url 'delete_user' user.id %}"><button class="action-btn delete">Delete</button></a>
+                                {% if user.email == 'admin@admin.com' %}
+                                    <button class="action-btn fixed">Fixed acc</button>
+                                {% else %}
+                                    <a href="{% url 'update_user' user.id %}"><button class="action-btn update">Update Role</button></a>
+                                    <a href="{% url 'delete_user' user.id %}"><button class="action-btn delete">Delete</button></a>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>
