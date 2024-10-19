@@ -7,14 +7,13 @@
 
 {% block content %}
     <div class="container-book">
-        <!-- Event Summary Section -->
         <div class="event-summary">
             <img src="{{ event.image.url }}" alt="{{ event.title }}">
             <h2>{{ event.title }}</h2>
-            <p><strong>Date:</strong> {{ event.start_date }} - {{ event.end_date }}</p>
+            <p><i class="fa-solid fa-location-dot" style="color: red;"></i> {{ event.location }}</p>
+            <p><i class="fa-regular fa-calendar" style="color: black;"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}</p>
         </div>
 
-        <!-- Booking Form -->
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

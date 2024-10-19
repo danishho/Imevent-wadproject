@@ -11,11 +11,11 @@
     margin-bottom: 30px;
 }
 .event-summary img {
-    width: 100%; /* Ensure image takes full width */
-    max-width: 400px; /* Limit the maximum width */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     border-radius: 10px;
-    object-fit: cover; /* Ensures the image covers the area nicely */
+    object-fit: cover;
 }
 .event-summary h2 {
     margin-top: 20px;

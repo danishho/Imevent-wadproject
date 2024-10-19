@@ -1,4 +1,3 @@
-/* General body styling */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
@@ -6,14 +5,12 @@ body {
     padding: 0;
 }
 
-/* Title styling */
 h1 {
     font-size: 2.5em;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Event table container styling */
 .event-table-container {
     width: 90%;
     margin: 20px auto;
@@ -22,14 +19,12 @@ h1 {
     overflow: hidden;
 }
 
-/* Event table styling */
 .event-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
 }
 
-/* Table headers and cells */
 .event-table th,
 .event-table td {
     padding: 15px;
@@ -37,37 +32,32 @@ h1 {
     border-bottom: 1px solid #ddd;
 }
 
-/* Table header background color and font size */
 .event-table th {
     background-color: #5a0b9a;
     color: white;
     font-size: 1.2em;
 }
 
-/* Image styling inside table cells */
 .event-table td img {
     max-width: 100px;
     height: auto;
     border-radius: 8px;
 }
 
-/* General table cell font styling */
 .event-table td {
     font-size: 1em;
     color: #555;
-    vertical-align: middle; /* Ensures that content aligns vertically in the center of the row */
+    vertical-align: middle;
 }
 
-/* Flexbox to ensure buttons stay side by side */
 .action-container {
-    display: flex; /* Ensures horizontal alignment */
-    justify-content: center; /* Centers the buttons inside the cell */
-    gap: 10px; /* Adds space between buttons */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* Action button styling */
 .action-btn {
-    display: inline-flex; /* Ensures inline layout with flexibility */
+    display: inline-flex;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -75,13 +65,12 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-/* Update button styling */
+
 .action-btn.update {
     background-color: #5a0b9a;
     color: white;
 }
 
-/* Delete button styling */
 .action-btn.delete {
     background-color: #dc3545;
     color: white;
@@ -92,11 +81,47 @@ h1 {
     color: white;
 }
 
-/* Hover effect for buttons */
+
 .action-btn:hover {
     opacity: 0.9;
 }
 
 .action-container .save, .cancel {
     display: none;
+}
+
+
+.modal-header {
+    background-color: #dc3545;
+    color: #fff;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+.modal-body {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    padding: 1.5rem;
+}
+.modal-footer {
+    justify-content: center;
+    padding: 1rem;
+}
+.btn-cancel {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+.btn-delete {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-delete:hover {
+    background-color: #c82333;
 }

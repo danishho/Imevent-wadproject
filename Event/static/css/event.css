@@ -28,7 +28,7 @@
 .events-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Increased gap for better spacing */
+    gap: 20px;
     justify-content: flex-start;
     margin-left: 50px;
 }
@@ -37,7 +37,7 @@
     width: 300px;
     padding: 15px;
     border-radius: 10px;
-    background-color: #ffffff; /* Changed to white for better contrast */
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     text-decoration: none;
@@ -97,21 +97,21 @@
 }
 
 .tag.dcs {
-    background-color: #3b82f6; /* Blue */
+    background-color: #3b82f6;
     color: white;
 }
 
 .tag.dia {
-    background-color: #10b981; /* Green */
+    background-color: #10b981;
     color: white;
 }
 
 .tag.dcd {
-    background-color: #fbbf24; /* Yellow */
+    background-color: #fbbf24;
     color: white;
 }
 
 .tag.dec {
-    background-color: #ef4444; /* Red */
+    background-color: #ef4444;
     color: white;
 }

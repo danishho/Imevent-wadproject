@@ -6,27 +6,21 @@
 {% block content %}
     <div class="container-details">
         <div class="event-card">
-            <!-- Event Image Section -->
             <div class="event-image">
                 <img src="{{ event.image.url }}" alt="{{ event.title }}">
             </div>
-            <!-- Event Details Section -->
             <div class="event-details">
-                <!-- Event Title and Meta Information -->
                 <h1 class="event-title">{{ event.title }}</h1>
                 <p class="event-meta">
                     <i class="fa-regular fa-calendar"></i> {{ event.start_date|date:"d/m/Y" }} - {{ event.end_date|date:"d/m/Y" }}
                     | <i class="fa-solid fa-location-dot" style="color: #FF6347; margin-left: 5px;"></i> {{ event.location }}
                 </p>
-                <!-- Event Description -->
                 <p class="event-description">{{ event.description }}</p>
 
-                <!-- Tickets Available (for display) -->
                 <p class="event-meta" style="color: {% if event.booked_count < event.max_tickets %}#28a745{% else %}#ff5a5f{% endif %};">
                     Availability: {{ event.booked_count }}/{{ event.max_tickets }}
                 </p>
 
-                <!-- Book Now Button -->
                 <div class="book-btn-container">
                     {% if event.booked_count < event.max_tickets %}
                         <a href="{% url 'book' event.id %}" class="book-btn">Book Now</a>

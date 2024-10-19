@@ -5,14 +5,12 @@ body {
     padding: 0;
 }
 
-/* Title styling */
 h1 {
     font-size: 2.5em;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Event table container styling */
 .event-table-container {
     width: 90%;
     margin: 20px auto;
@@ -21,14 +19,12 @@ h1 {
     overflow: hidden;
 }
 
-/* Event table styling */
 .event-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
 }
 
-/* Table headers and cells */
 .event-table th,
 .event-table td {
     padding: 15px;
@@ -36,37 +32,33 @@ h1 {
     border-bottom: 1px solid #ddd;
 }
 
-/* Table header background color and font size */
 .event-table th {
     background-color: #5a0b9a;
     color: white;
     font-size: 1.2em;
 }
 
-/* Image styling inside table cells */
 .event-table td img {
     max-width: 100px;
     height: auto;
     border-radius: 8px;
 }
 
-/* General table cell font styling */
 .event-table td {
     font-size: 1em;
     color: #555;
-    vertical-align: middle; /* Ensures that content aligns vertically in the center of the row */
+    vertical-align: middle;
 }
 
-/* Flexbox to ensure buttons stay side by side */
 .action-container {
-    display: flex; /* Ensures horizontal alignment */
-    justify-content: center; /* Centers the buttons inside the cell */
-    gap: 10px; /* Adds space between buttons */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* Action button styling */
+
 .action-btn {
-    display: inline-flex; /* Ensures inline layout with flexibility */
+    display: inline-flex;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -74,19 +66,16 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-/* Update button styling */
 .action-btn.update {
     background-color: #5a0b9a;
     color: white;
 }
 
-/* Delete button styling */
 .action-btn.delete {
     background-color: #dc3545;
     color: white;
 }
 
-/* Hover effect for buttons */
 .action-btn:hover {
     opacity: 0.9;
 }
@@ -95,18 +84,17 @@ h1 {
     display: none;
 }
 
-/* Description text truncation */
 .event-table td.description {
-    max-width: 200px; /* Adjust the width to your preference */
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Ensures that text exceeding the width will be hidden */
-    text-overflow: ellipsis; /* Adds the '...' to indicate that text is truncated */
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tags {
     margin-top: 10px;
     display: flex;
-    flex-direction: column; /* Makes the tags display vertically */
+    flex-direction: column;
     gap: 5px;
 }
 
@@ -117,26 +105,60 @@ h1 {
     border-radius: 12px;
     font-size: 0.875rem;
     display: inline-block;
-    width: fit-content; /* Adjusts the width to fit the content */
+    width: fit-content;
 }
 
-/* Custom colors for each tag type */
 .tag.dcs {
-    background-color: #3b82f6; /* Blue */
+    background-color: #3b82f6;
     color: white;
 }
 
 .tag.dia {
-    background-color: #10b981; /* Green */
+    background-color: #10b981;
     color: white;
 }
 
 .tag.dcd {
-    background-color: #fbbf24; /* Yellow */
+    background-color: #fbbf24;
     color: white;
 }
 
 .tag.dec {
-    background-color: #ef4444; /* Red */
+    background-color: #ef4444;
     color: white;
+}
+
+.modal-header {
+    background-color: #dc3545;
+    color: #fff;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+.modal-body {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    padding: 1.5rem;
+}
+.modal-footer {
+    justify-content: center;
+    padding: 1rem;
+}
+.btn-cancel {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+.btn-delete {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-delete:hover {
+    background-color: #c82333;
 }

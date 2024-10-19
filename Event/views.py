@@ -110,7 +110,7 @@ def createEvent(request):
             form.save_m2m()
             if request.user.user_type == 'Admin':
                 return redirect('myevent')
-            return redirect('index')
+            return redirect('event')
     return render(request, 'addevent.html')
 
 
@@ -275,3 +275,5 @@ def update_user(request, user_id):
             userform.save()
             return redirect('adminpage')
     return render(request, 'adminUpdateUser.html', {'form': userform, 'user': user})
+
+

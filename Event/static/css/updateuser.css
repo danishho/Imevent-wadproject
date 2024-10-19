@@ -1,28 +1,28 @@
 .form-container {
     max-width: 800px;
-    margin: 50px auto; /* Centering the form */
+    margin: 50px auto;
     padding: 20px;
-    background-color: #fff; /* Form background */
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .addevent-form input,
 .addevent-form textarea,
 .addevent-form select {
-    width: 100%; /* Full width inputs */
-    margin-bottom: 15px; /* Spacing between inputs */
-    padding: 12px 15px; /* Add padding inside inputs */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    box-sizing: border-box; /* Make sure padding is included in width */
-    font-size: 16px; /* Increase font size */
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 .addevent-form button {
     width: 100%;
     padding: 12px;
-    background-color: #6a0dad; /* Button color */
+    background-color: #6a0dad;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -43,12 +43,12 @@
 
 .checkbox-group {
     display: flex;
-    align-items: center; /* Aligns checkboxes and text vertically */
-    gap: 5px; /* Adds space between checkbox and label */
-    margin-bottom: 15px; /* Spacing between checkboxes and other elements */
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
 }
 
 .checkbox-group input[type="checkbox"] {
-    width: auto; /* Prevent checkboxes from taking up full width */
-    margin: 0; /* Ensure there's no default margin */
+    width: auto;
+    margin: 0;
 }
