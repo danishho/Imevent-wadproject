@@ -8,6 +8,7 @@ body {
 h1 {
     font-size: 2.5em;
     color: #333;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -51,6 +52,12 @@ h1 {
     vertical-align: middle;
 }
 
+.event-table td.description {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .action-container {
     display: flex;

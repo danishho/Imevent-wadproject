@@ -27,7 +27,7 @@
                     <tr>
                         <td><img src="{{ booking.event.image.url }}" alt="Event Image"></td>
                         <td>{{ booking.event.title }}</td>
-                        <td>{{ booking.event.description }}</td>
+                        <td class="description">{{ booking.event.description }}</td>
                         <td>{{ booking.event.location }}</td>
                         <td>{{ booking.event.start_date|date:"d/m/y" }} - {{ booking.event.end_date|date:"d/m/y" }}</td>
                         <td>{{ booking.student_id }}</td>

@@ -33,6 +33,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+
         }
 
         .container {
@@ -241,31 +242,33 @@
             {% endblock %}
         </main>
 
-        <footer>
-            <div class="footer-navigation">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'event' %}">Event</a></li>
-                    <li><a href="{% url 'createEvent' %}">Add Event</a></li>
-                    <li><a href="{% url 'yourbooking' %}">Your Booking</a></li>
-                </ul>
+    <footer>
+        <div class="footer-navigation">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'event' %}">Event</a></li>
+                <li><a href="{% url 'yourbooking' %}">Your Booking</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: admin@gmail.com</p>
+            <p>Phone: 99999</p>
+        </div>
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" class="social-icon">FB</a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">TW</a>
+                <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
             </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p>Email: admin@gmail.com</p>
-                <p>Phone: 99999</p>
-            </div>
-            <div class="footer-social">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank" class="social-icon">FB</a>
-                    <a href="https://twitter.com" target="_blank" class="social-icon">TW</a>
-                    <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
-                </div>
-            </div>
-        </footer>
-    </div>
+        </div>
+
+        <div style="width: 100%; text-align: center; padding-top: 20px; color: #fff;">
+            <p>&copy; 2024 IMeventPortal. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     {% block js %}
     {% endblock %}
