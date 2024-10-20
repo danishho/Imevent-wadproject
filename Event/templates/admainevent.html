@@ -43,8 +43,8 @@
                         <td>{{ event.booked_count }}/{{ event.max_tickets }}</td>
                         <td>
                             <div class="action-container">
-                                <a href="{% url 'update_event' event.id %}"><button class="action-btn update">Update</button></a>
-                                <button class="action-btn delete btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-event-id="{{ event.id }}">Delete</button>
+                                <a href="{% url 'update_event' event.event_id %}"><button class="action-btn update">Update</button></a>
+                                <button class="action-btn delete btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-event-id="{{ event.event_id }}">Delete</button>
                             </div>
                         </td>
                     </tr>

@@ -242,7 +242,7 @@ def search(request):
         booked_count = Booking.objects.filter(event=event).count()
         tags = list(event.tags.values_list('name', flat=True))
         event_data.append({
-            'id': event.id,
+            'id': event.event_id,
             'title': event.title,
             'location': event.location,
             'start_date': event.start_date.strftime('%d/%m/%Y'),
@@ -275,5 +275,7 @@ def update_user(request, user_id):
             userform.save()
             return redirect('adminpage')
     return render(request, 'adminUpdateUser.html', {'form': userform, 'user': user})
+
+
 
 

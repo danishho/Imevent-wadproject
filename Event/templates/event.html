@@ -14,7 +14,7 @@
 </div>
 <div class="events-container" id="replaceable-content">
     {% for event in events %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
+        <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
                 {% if event.image %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}">
                 {% else %}

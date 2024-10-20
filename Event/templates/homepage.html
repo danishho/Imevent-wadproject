@@ -13,7 +13,7 @@
     </div>
     <div class="events-container">
         {% for event in events %}
-            <a href="{% url 'eventDetails' event.id %}" class="event-card">
+            <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
                 {% if event.image %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}">
                 {% else %}
@@ -45,7 +45,7 @@
     </div>
     <div class="events-container">
     {% for event in dcs %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
+        <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
                 {% if event.image %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}">
                 {% else %}
@@ -76,7 +76,7 @@
     </div>
     <div class="events-container">
     {% for event in dec %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
+        <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
                 {% if event.image %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}">
                 {% else %}
@@ -108,7 +108,7 @@
     </div>
     <div class="events-container">
     {% for event in dcd %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
+        <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
             {% if event.image %}
                 <img src="{{ event.image.url }}" alt="{{ event.title }}">
             {% else %}
@@ -139,7 +139,7 @@
     </div>
     <div class="events-container">
     {% for event in dia %}
-        <a href="{% url 'eventDetails' event.id %}" class="event-card">
+        <a href="{% url 'eventDetails' event.event_id %}" class="event-card">
             {% if event.image %}
                 <img src="{{ event.image.url }}" alt="{{ event.title }}">
             {% else %}
